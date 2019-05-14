@@ -30,17 +30,13 @@ def load_data(module_path, data_file_name):
         A 1D array containing the names of the classifications. For example
         target_names[0] is the name of the target[0] class.
     """
-    with open(join(module_path, 'data', data_file_name)) as csv_file:
-        data_file = csv.reader(csv_file)
-        temp = next(data_file)
-        n_samples = int(temp[0])
-        n_features = int(temp[1])
-        target_names = np.array(temp[2:])
-        data = np.empty((n_samples, n_features))
-        target = np.empty((n_samples,), dtype=np.int)
 
-        for i, ir in enumerate(data_file):
-            data[i] = np.asarray(ir[:-1], dtype=np.float64)
-            target[i] = np.asarray(ir[-1], dtype=np.int)
+    data = np.genfromtxt(join(module_path, '/Users/brunocarletti/Downloads/', data_file_name), delimiter=',', usecols=(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24))
+    target = np.genfromtxt(join(module_path, '/Users/brunocarletti/Downloads/', data_file_name), delimiter=',', usecols=(25))
+    #print('-------------- DATA ------------------------------------')
+    #print(data)
 
-    return data, target, target_names                 
+    #print('-------------- TARGET ------------------------------------')
+    #print(target)
+
+    return data, target                 
